@@ -33,6 +33,15 @@ app.get( "/about", ( req, res ) => {
 app.get( "/add", ( req, res ) => {
     res.render('add');
 });
+app.get( "/photos/:id", async ( req, res ) => {
+    // console.log(req.params.id);
+    // res.render('add');
+    // res.redirect('/');
+    const photoID = await Photo.findById(req.params.id);
+    res.render('photo', {
+        photoID
+    });
+});
 app.post( "/photos", async ( req, res ) => {
     // console.log(req.body);
     await Photo.create(req.body);
