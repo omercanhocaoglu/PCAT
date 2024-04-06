@@ -9,10 +9,14 @@ const pageController = require('./controllers/pageController');
 const app = express();
 
 //connect db
-mongoose.connect('mongodb://localhost/pcat-test-db', {
+mongoose.connect('mongodb+srv://omercanhocaoglu:1Wx27NayGWGYKGJ4@cluster0.xciagxs.mongodb.net/pcat-db?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
+}).then( () => {
+    console.log('DB connected!')
+}).catch( (err) => {
+    console.log(err);
 });
 
 //Template engine
@@ -41,7 +45,7 @@ app.get( "/about", pageController.getAboutPage);
 app.get( "/add", pageController.getAddPage);
 app.get( "/photos/edit/:id", pageController.getEditPage);
 
-const port = 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Sonucu port:${port}'unda başlatıldı.`);
 });
