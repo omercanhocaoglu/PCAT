@@ -14,14 +14,6 @@ exports.getAllPhotos = async ( req, res ) => {
         current: page,
         pages: Math.ceil( totalPhotos / photosPerPage )
     });
-    
-
-
-    // console.log(req.query);
-    // const photos = await Photo.find({}).sort('-dateCreated');
-    // res.render('index', {
-    //     photos
-    // });
 };
 exports.getPhoto = async ( req, res ) => {
     // console.log(req.params.id);
